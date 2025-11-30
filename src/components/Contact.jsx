@@ -30,6 +30,17 @@ const Contact = () => {
                 >
                     Say Hello
                 </a>
+
+                <div style={{ marginTop: '4rem', display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#8892b0' }}>
+                        <span style={{ color: 'var(--accent-color)' }}>Email:</span>
+                        <a href="mailto:sayan199783@gmail.com" style={{ color: '#8892b0' }}>sayan199783@gmail.com</a>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#8892b0' }}>
+                        <span style={{ color: 'var(--accent-color)' }}>Phone:</span>
+                        <a href="tel:+917980371581" style={{ color: '#8892b0' }}>+1 123 456 7890</a>
+                    </div>
+                </div>
             </motion.div>
         </section>
     );
