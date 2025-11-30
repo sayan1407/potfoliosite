@@ -38,7 +38,7 @@ const Contact = () => {
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#8892b0' }}>
                         <span style={{ color: 'var(--accent-color)' }}>Phone:</span>
-                        <a href="tel:+917980371581" style={{ color: '#8892b0' }}>+1 123 456 7890</a>
+                        <a href="tel:+917980371581" style={{ color: '#8892b0' }}>+917980371581</a>
                     </div>
                 </div>
             </motion.div>
