@@ -11,30 +11,46 @@ const Navbar = () => {
         { name: '~/contact', href: '#contact' },
     ];
 
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
-        <nav style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            backgroundColor: 'rgba(10, 10, 10, 0.9)',
-            backdropFilter: 'blur(10px)',
-            zIndex: 1000,
-            borderBottom: '1px solid var(--secondary-color)'
-        }}>
-            <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '60px' }}>
-                <div className="logo" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-                    <span style={{ color: 'var(--accent-color)' }}>&gt;</span> Sayan_Saha
+        <nav className="navbar">
+            <div className="container navbar-container">
+                <div className="logo">
+                    <span>&gt;</span> Sayan_Saha
                 </div>
 
+                {/* Mobile Menu Toggle */}
+                <button className="mobile-menu-toggle" onClick={toggleMenu} aria-label="Toggle navigation">
+                    {isOpen ? '✕' : '☰'}
+                </button>
+
                 {/* Desktop Menu */}
-                <div className="desktop-menu" style={{ display: 'flex', gap: '2rem' }}>
+                <div className="desktop-menu">
                     {navLinks.map((link) => (
-                        <a key={link.name} href={link.href} style={{ fontSize: '0.9rem' }}>
+                        <a key={link.name} href={link.href} className="nav-link">
                             {link.name}
                         </a>
                     ))}
                 </div>
+
+                {/* Mobile Menu */}
+                {isOpen && (
+                    <div className="mobile-menu">
+                        {navLinks.map((link) => (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                className="nav-link"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {link.name}
+                            </a>
+                        ))}
+                    </div>
+                )}
             </div>
         </nav>
     );
