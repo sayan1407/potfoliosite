@@ -26,7 +26,7 @@ const About = () => {
                     <div className="about-text">
                         <p style={{ marginBottom: '1.5rem', color: '#8892b0' }}>
                             Hello! My name is Sayan and I enjoy creating things that live on the internet.
-                            I am an experienced Software Engineer with over 5 years of hands-on experience in designing, developing, and maintaining web applications and backend systems.
+                            I am an experienced Software Engineer with over 6 years of hands-on experience in designing, developing, and maintaining web applications and backend systems.
                         </p>
                         <p style={{ marginBottom: '1.5rem', color: '#8892b0' }}>
                             I am proficient in <span style={{ color: 'var(--accent-color)' }}>.NET Core</span> and <span style={{ color: 'var(--accent-color)' }}>React.js</span> with a strong understanding of database systems including Oracle and MS SQL Server.
