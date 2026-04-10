@@ -59,6 +59,14 @@ const Experience = () => {
                                 Redesigned and migrated a legacy .NET Web Forms application to a modern, scalable architecture
                                 using .NET 8 for the backend and React.js for the frontend.
                             </li>
+                            <li style={{ marginBottom: '10px', color: '#8892b0', display: 'flex' }}>
+                                <span style={{ color: 'var(--accent-color)', marginRight: '10px' }}>▹</span>
+                                <div>
+                                    Developed an AI based book recommendation application that will recommend books based on the user's interest.
+                                    <br />
+                                    Application link - <a href="https://book-review-ui.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-color)', textDecoration: 'none' }}>https://book-review-ui.vercel.app/</a>
+                                </div>
+                            </li>
                         </ul>
                     </div>
 
