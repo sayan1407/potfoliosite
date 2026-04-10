@@ -4,7 +4,7 @@ import { useChatMutation } from '../Api/ChatApi';
 const FloatingChat = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [message, setMessage] = useState("");
-    const [chat] = useChatMutation();
+    const [chat, { isLoading }] = useChatMutation();
     const [history, setHistory] = useState([]);
     const messagesEndRef = useRef(null);
 
@@ -26,7 +26,7 @@ const FloatingChat = () => {
         if (!isResizing.current) return;
         const dx = startPos.current.x - e.clientX;
         const dy = startPos.current.y - e.clientY;
-        
+
         setWindowSize({
             width: Math.max(250, startSize.current.width + dx),
             height: Math.max(300, startSize.current.height + dy)
@@ -80,16 +80,21 @@ const FloatingChat = () => {
                                 &gt; {item.message}
                             </div>
                         ))}
+                        {isLoading && (
+                            <div style={styles.messageBot}>
+                                sys_msg: Thinking...
+                            </div>
+                        )}
                         <div ref={messagesEndRef} />
                     </div>
                     <div style={styles.chatFooter}>
                         <span style={{ color: 'var(--accent-color)', alignSelf: 'center' }}>&gt;</span>
-                        <input 
-                            type="text" 
-                            placeholder="Type a command..." 
-                            style={styles.input} 
-                            value={message} 
-                            onChange={(e) => setMessage(e.target.value)} 
+                        <input
+                            type="text"
+                            placeholder="Type a command..."
+                            style={styles.input}
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                         />
                         <button style={styles.sendButton} onClick={handleSend}> [ENTER]</button>
@@ -100,16 +105,16 @@ const FloatingChat = () => {
             {!isOpen && (
                 <div style={styles.buttonContainer}>
                     <div style={styles.labelBubble}>
-                        Hi, I am Sayan's personal assistant
+                        Hi, I am Sayan's AI assistant
                     </div>
                     <button style={styles.floatingButton} onClick={() => setIsOpen(true)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M12 8V4H8"/>
-                            <rect width="16" height="12" x="4" y="8" rx="2"/>
-                            <path d="M2 14h2"/>
-                            <path d="M20 14h2"/>
-                            <path d="M15 13v2"/>
-                            <path d="M9 13v2"/>
+                            <path d="M12 8V4H8" />
+                            <rect width="16" height="12" x="4" y="8" rx="2" />
+                            <path d="M2 14h2" />
+                            <path d="M20 14h2" />
+                            <path d="M15 13v2" />
+                            <path d="M9 13v2" />
                         </svg>
                     </button>
                 </div>
