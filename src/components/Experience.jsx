@@ -27,7 +27,7 @@ const Experience = () => {
                     <div style={{ marginBottom: '3rem' }}>
                         <h3 style={{ fontSize: '1.3rem', color: 'var(--text-color)' }}>Software Engineer</h3>
                         <p style={{ color: 'var(--accent-color)', fontFamily: 'var(--font-mono)', fontSize: '0.9rem', marginBottom: '1rem' }}>
-                            5+ Years Experience
+                            6+ Years Experience
                         </p>
                         <ul style={{ listStyle: 'none', marginLeft: '0' }}>
                             <li style={{ marginBottom: '10px', color: '#8892b0', display: 'flex' }}>
