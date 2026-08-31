@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useChatMutation } from '../Api/ChatApi';
+import { streamChat } from '../Api/ChatApiStream';
 
 const FloatingChat = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [message, setMessage] = useState("");
-    const [chat, { isLoading }] = useChatMutation();
+    const [isLoading, setIsLoading] = useState(false);
     const [history, setHistory] = useState([]);
     const messagesEndRef = useRef(null);
 
@@ -44,15 +44,44 @@ const FloatingChat = () => {
     }, [history]);
 
     const handleSend = async () => {
-        if (!message.trim()) return;
+        const trimmedMessage = message.trim();
+        if (!trimmedMessage) return;
+
+        setHistory((prevState) => [...prevState, { message: trimmedMessage }]);
+        setHistory((prevState) => [...prevState, { message: "" }]);
+        setMessage("");
+        setIsLoading(true);
+
         try {
-            setHistory((prevState) => [...prevState, { message }]);
-            setMessage("");
-            const response = await chat({ message });
-            setHistory((prevState) => [...prevState, { message: response.data.reply }]);
-            console.log(response);
+            await streamChat({
+                message: trimmedMessage,
+                onChunk: (chunk) => {
+                    setHistory((prevState) => {
+                        const nextState = [...prevState];
+                        const lastIndex = nextState.length - 1;
+                        const lastItem = nextState[lastIndex];
+
+                        if (!lastItem) return prevState;
+
+                        nextState[lastIndex] = {
+                            ...lastItem,
+                            message: `${lastItem.message || ""}${chunk}`
+                        };
+
+                        return nextState;
+                    });
+                },
+                onDone: () => {
+                    setIsLoading(false);
+                },
+                onError: (error) => {
+                    console.error("Error sending message:", error);
+                    setIsLoading(false);
+                }
+            });
         } catch (error) {
             console.error("Error sending message:", error);
+            setIsLoading(false);
         }
     };
 
